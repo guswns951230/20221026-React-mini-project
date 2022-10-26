@@ -13,12 +13,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faStar,
+  faBagShopping,
+  faHeart,
+} from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+
 function App() {
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
   };
   return (
@@ -33,15 +41,16 @@ function App() {
           alert("Click!");
         }}
       >
-        Button as link
+        <FontAwesomeIcon icon={faStar} />
+        <FontAwesomeIcon icon={faBagShopping} />
+        <FontAwesomeIcon icon={faTrashCan} />
+        <FontAwesomeIcon icon={faHeart} />
       </Button>
       <Container>
         <Row>
           <Col xs="6">1 of 3</Col>
-          <Col md="auto">Variable width content</Col>
-          <Col xs lg="2">
-            3 of 3
-          </Col>
+          <Col>Variable width content</Col>
+          <Col>3 of 3</Col>
         </Row>
       </Container>
       <Slider {...settings}>
