@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -9,10 +9,20 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 
+import DataContext from "../context/DataContext";
+
 const NavbarComp = () => {
   const [login, setLogin] = useState(true);
+  const data = useContext(DataContext);
+
+  // component가 mount 되자마자 login 정보 확인
+  useEffect(() => {
+    setLogin(data.state.user ? true : false);
+  }, []);
+
   return (
     <div>
+      {console.log(data)}
       <Navbar bg="primary" variant="dark">
         <Container>
           <Navbar.Brand>
@@ -28,7 +38,7 @@ const NavbarComp = () => {
               <Nav>
                 {/* LogIn 시 출력 될 component */}
                 <NavLink className="nav-link" to="/mypage">
-                  {}'s MyPage
+                  {data.state.user.name}'s MyPage
                 </NavLink>
                 <Button variant="outline-light">Log out</Button>{" "}
               </Nav>

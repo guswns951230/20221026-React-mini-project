@@ -7,12 +7,17 @@ import "slick-carousel/slick/slick-theme.css";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./page/Layout";
 
+// 공용으로 쓸 data context Provider 추가
+import { DataProvider } from "./context/DataContext";
+
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout />}></Route>
-      </Routes>
+      <DataProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}></Route>
+        </Routes>
+      </DataProvider>
     </div>
   );
 }
