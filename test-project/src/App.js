@@ -17,9 +17,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,
   faBagShopping,
-  faHeart,
+  faHeart as fullHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import {
+  faTrashCan,
+  faHeart as cleanHeart,
+} from "@fortawesome/free-regular-svg-icons";
 
 function App() {
   const settings = {
@@ -28,6 +31,8 @@ function App() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
   return (
     <div className="App">
@@ -44,7 +49,7 @@ function App() {
         <FontAwesomeIcon icon={faStar} />
         <FontAwesomeIcon icon={faBagShopping} />
         <FontAwesomeIcon icon={faTrashCan} />
-        <FontAwesomeIcon icon={faHeart} />
+        <FontAwesomeIcon icon={fullHeart} />
       </Button>
       <Container>
         <Row>
@@ -77,4 +82,26 @@ function App() {
   );
 }
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <FontAwesomeIcon
+      icon={fullHeart}
+      onClick={onClick}
+      className={className}
+      style={{ color: "red" }}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "green" }}
+      onClick={onClick}
+    />
+  );
+}
 export default App;
