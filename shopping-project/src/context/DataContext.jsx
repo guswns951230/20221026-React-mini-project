@@ -14,13 +14,29 @@ const DataProvider = ({ children }) => {
     profile: null,
     likelist: [],
   });
-  // 상품정보
+  // 상품정보 : 배열로 들어감
+  const [productList, setProductList] = useState([
+    {
+      productId: 1,
+      productName: "React",
+      productDetail: "How to learn React",
+      productColor: ["white", "black"],
+      productPicture: "book1.png",
+    },
+    {
+      productId: 2,
+      productName: "JavaScript",
+      productDetail: "How to learn JS",
+      productColor: ["white", "black"],
+      productPicture: "book1.png",
+    },
+  ]);
   // 댓글 정보
 
   // 사용할 value값을 state와 action으로 분리하여 사용
   const value = {
-    state: { user },
-    action: [setUser],
+    state: { user, productList },
+    action: [setUser, setProductList],
   };
   // DataProvider를 사용할 때 DataContext.Provider를 사용할 수 있도록 함
   // children은 Provider를 쓸 때 데이터를 공용으로 쓰는 component

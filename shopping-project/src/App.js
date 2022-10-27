@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { Routes, Route } from "react-router-dom";
 import Layout from "./page/Layout";
+import Home from "./page/Home";
 
 // 공용으로 쓸 data context Provider 추가
 import { DataProvider } from "./context/DataContext";
@@ -15,7 +16,9 @@ function App() {
     <div className="App">
       <DataProvider>
         <Routes>
-          <Route path="/" element={<Layout />}></Route>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+          </Route>
         </Routes>
       </DataProvider>
     </div>
