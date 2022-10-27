@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -14,11 +14,21 @@ import DataContext from "../context/DataContext";
 const NavbarComp = () => {
   const [login, setLogin] = useState(true);
   const data = useContext(DataContext);
+  const navigate = useNavigate();
 
   // component가 mount 되자마자 login 정보 확인
   useEffect(() => {
     setLogin(data.state.user ? true : false);
   }, []);
+
+  // Logout을 위한 이벤트 함수
+  const onClickLogout = () => {
+    setLogin(false); // conponent를 바꿔주기 위해 수정
+    // user의 값을 null로
+    data.action.setUser(null);
+    // Logout시 항상 홈으로 돌아감
+    navigate("/");
+  };
 
   return (
     <div>
@@ -40,7 +50,9 @@ const NavbarComp = () => {
                 <NavLink className="nav-link" to="/mypage">
                   {data.state.user.name}'s MyPage
                 </NavLink>
-                <Button variant="outline-light">Log out</Button>{" "}
+                <Button variant="outline-light" onClick={onClickLogout}>
+                  Log out
+                </Button>{" "}
               </Nav>
             ) : (
               <div>
